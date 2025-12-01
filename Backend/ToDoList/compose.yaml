@@ -1,0 +1,7 @@
+﻿services:
+  todolist.api:
+    image: todolist.api
+    build:
+      context: .
+      dockerfile: ToDoList.Api/Dockerfile
+
