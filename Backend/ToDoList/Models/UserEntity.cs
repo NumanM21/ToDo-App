@@ -1,5 +1,4 @@
-﻿
-namespace DefaultNamespace;
+﻿namespace DefaultNamespace;
 
 
 public class UserEntity
@@ -11,4 +10,6 @@ public class UserEntity
     public string PasswordHash { get; set; };
     public string Location { get; set; };
     public DateOnly CreatedAt { get; set; };
+    public ICollections<TaskEntity> Tasks { get; set; };
+    
 }
