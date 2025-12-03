@@ -13,4 +13,4 @@ dist/
 # General
 .DS_Store
 *.log
-```
+**/.idea/
