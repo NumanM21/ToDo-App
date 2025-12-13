@@ -3,7 +3,8 @@
 public class TaskEntity
 {
     public int Id { get; set; }
-    public UserEntity UserId { get; set; } = null!;
+    public int UserId { get; set; }
+    public UserEntity User { get; set; } = null!;
     public string Header { get; set; } = string.Empty;
     public string? Body { get; set; }
     public bool IsComplete { get; set; }
