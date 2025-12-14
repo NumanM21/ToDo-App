@@ -1,15 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-
 namespace ToDoList.Api.Data;
 using ToDoList.Api.Models;
 
-public class AppDbContext : DbContext 
+public class AppDbContext(DbContextOptions options) : DbContext(options)
 {
-    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
-    {
-        
-    }
-    
     // DbSet - One per entity - Represents our tables 
     public DbSet<UserEntity> Users { get; set; }
     public DbSet<TaskEntity> Tasks { get; set; }

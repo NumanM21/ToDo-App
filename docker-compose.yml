@@ -1,14 +1,11 @@
 ﻿services:
   postgres:
     image: postgres:15
-    container_name: todoapp-db
-    environment:
-      POSTGRES_USER: todouser
-      POSTGRES_PASSWORD: todopass123
-      POSTGRES_DB: todoappdb
+    container_name: todolistdb
+    restart: always
     ports:
       - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-volumes:
-  postgres_data:
+    environment:
+      POSTGRES_DB: "todoappdb"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
