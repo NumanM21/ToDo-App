@@ -25,5 +25,25 @@ public class AuthResponseDto
     public int UserId { get; set; }
     public string Email { get; set; } = string.Empty;
     public string FirstName { get; set; } = string.Empty;
+}
 
+public class CreateTaskDto
+{
+    public int UserId { get; set; }
+    public string Header { get; set; } = string.Empty;
+    public string? Body { get; set; }
+    public bool IsComplete { get; set; }
+    public bool IsCancelled { get; set; }
+    public string? CompleteTargetDate { get; set; }
+}
+
+public class UpdateTaskDto
+{
+    public int Id { get; set; }
+    public int UserId { get; set; }
+    public string Header { get; set; } = string.Empty;
+    public string? Body { get; set; }
+    public bool IsComplete { get; set; }
+    public bool IsCancelled { get; set; }
+    public string? CompleteTargetDate { get; set; }
 }

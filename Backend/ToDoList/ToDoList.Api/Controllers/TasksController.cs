@@ -40,34 +40,59 @@ public class TasksController : ControllerBase
 
     // Post - api/tasks
     [HttpPost]
-    public async Task<ActionResult<TaskEntity>> CreateTask(TaskEntity task)
+    public async Task<ActionResult<TaskEntity>> CreateTask(CreateTaskDto dto)
     {
-        _context.Add(task);
-
-        if (await _context.SaveChangesAsync() > 0)
+        var task = new TaskEntity
         {
-            return Ok();
-        }
+            UserId = dto.UserId,
+            Header = dto.Header,
+            Body = dto.Body,
+            IsComplete = dto.IsComplete,
+            IsCancelled = dto.IsCancelled,
+            CompleteTargetDate = string.IsNullOrEmpty(dto.CompleteTargetDate)
+                ? null
+                : DateOnly.Parse(dto.CompleteTargetDate),
+            CreatedAt = DateTime.UtcNow
+        };
 
-        return BadRequest("Task not created");
+        _context.Add(task);
+        await _context.SaveChangesAsync();
+
+        return Ok(task);
     }
 
     // Put - api/tasks/id_number (Update specific task)
     [HttpPut("{id:int}")]
-    public async Task<IActionResult> UpdateTask(int id, TaskEntity task)
+    public async Task<IActionResult> UpdateTask(int id, UpdateTaskDto dto)
     {
-        if (id != task.Id) return BadRequest("Id do not match");
+        if (id != dto.Id)
+            return BadRequest("ID mismatch");
+
+        var task = new TaskEntity
+        {
+            Id = dto.Id,
+            UserId = dto.UserId,
+            Header = dto.Header,
+            Body = dto.Body,
+            IsComplete = dto.IsComplete,
+            IsCancelled = dto.IsCancelled,
+            CompleteTargetDate = string.IsNullOrEmpty(dto.CompleteTargetDate) 
+                ? null 
+                : DateOnly.Parse(dto.CompleteTargetDate),
+            CreatedAt = DateTime.UtcNow  
+        };
 
         _context.Tasks.Update(task);
-
+        
         try
         {
             await _context.SaveChangesAsync();
         }
         catch (DbUpdateConcurrencyException)
         {
-            if (!await _context.Tasks.AnyAsync(x => x.Id == id)) return NotFound("Task does not exist");
-            throw; // Need to avoid silent data corruption - we only handle a specific error (task not found), not ALL errors!
+            if (!await _context.Tasks.AnyAsync(x => x.Id == id))
+                return NotFound("Task does not exist");
+            throw; // Catch silent errors which we are not looking for
         }
 
         return NoContent();
