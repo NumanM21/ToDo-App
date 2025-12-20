@@ -73,6 +73,18 @@ builder.Services.AddAuthentication(opt =>   // Adds auth to DI and sets default 
 
 builder.Services.AddAuthorization(); // enables [Authorize] attribute
 
+// Middleware to allow API requests from Frontend  -- CORS HAS to be before builder.Build()!
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy("AllowFrontend", policy =>
+    {
+        policy.WithOrigins("http://localhost:5173") // Frontend URL
+            .AllowAnyMethod()   // Allow GET, POST, PUT, DELETE 
+            .AllowAnyHeader()   // Allow all headers
+            .AllowCredentials(); // Allow cookies/auth
+    });
+});
+
 var app = builder.Build();
 
 // Seed data for development
@@ -156,6 +168,9 @@ using (var scope = app.Services.CreateScope())
         Console.WriteLine("Database seeded successfully!");
     }
 }
+
+// MUST best before useAuthentication!
+app.UseCors("AllowFrontend"); // what we configured above 
 
 // Middleware (after the app is BUILT!) - BEFORE we execute our controllers (otherwise controllers prio'd over auth checks)
 app.UseAuthentication(); // Reads token, validates and populates user

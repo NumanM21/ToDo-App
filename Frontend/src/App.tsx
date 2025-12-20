@@ -1,8 +1,8 @@
 // Main component - Our UI Code
 import {Navigate, Route, Routes} from "react-router-dom";
-import LoginPage from "../pages/LoginPage.tsx";
-import RegisterPage from "../pages/RegisterPage.tsx";
-import DashboardPage from "../pages/DashboardPage.tsx";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import DashboardPage from "./pages/DashboardPage";
 
 function App() {  // similar to  // useState - React hook  (function) - returns curr val and function to update it -- state change -> component re-renders (UI)
 
