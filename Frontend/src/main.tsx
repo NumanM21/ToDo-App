@@ -7,7 +7,7 @@ import {BrowserRouter} from "react-router-dom";
 // React bootstrapper 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-      {/*BrowerserRouter allows routing throughout the app - hence we wrapp <App with it - app router created */}
+      {/*BrowerserRouter allows routing throughout the app - hence we wrap <App with it - app router created */}
       <BrowserRouter> 
           <App />
       </BrowserRouter>

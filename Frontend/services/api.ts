@@ -1,5 +1,5 @@
 ﻿import axios from "axios";
-import {AuthResponse, LoginCredentials, RegisterCredentials, Task} from "../types/types";
+import type {AuthResponse, LoginCredentials, RegisterCredentials, Task} from "../types/types";
 
 
 // Base URL for my backend
