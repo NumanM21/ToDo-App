@@ -12,6 +12,12 @@ var builder = WebApplication.CreateBuilder(args); // Sets up IConfiguration, rea
 // Add services to the container.
 
 builder.Services.AddControllers();
+// Services to allow backend to accept any casing of properties (backend dto expecting  PascalCase (Capital first) , frontend dto is sending camelCase ...)
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+    });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {

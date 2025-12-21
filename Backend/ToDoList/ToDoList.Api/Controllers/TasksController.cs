@@ -30,7 +30,7 @@ public class TasksController : ControllerBase
             .Where(x => x.UserId == userId)  // x.UserId NOT x.Id (.Id is task Id, userId is the actual user Id we need to match against!)
             .ToListAsync();
 
-        return tasks;
+        return Ok(tasks);
     }
 
     // Get - Api/tasks/id_number

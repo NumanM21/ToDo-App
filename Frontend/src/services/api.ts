@@ -60,22 +60,22 @@ export const TaskAPI = {
     },
     
     getById: async (id:number): Promise<Task> => {
-        const response = await api.get(`/task/${id}`);
+        const response = await api.get(`/tasks/${id}`);
         return response.data;
     },
     // Omit <> - TS Utility type (Task interface (new type created) without the specified fields we put inside) - Backend generates those 3 so we don't need to!
     create: async (task:Omit<Task,'id' | 'userId' | 'createdAt'>): Promise<Task> => {
-        const response = await api.post('/task', task);
+        const response = await api.post('/tasks', task);
         return response.data; // Back returns created task with the 3 omitted field!
     },
     // Partial<> - TS Utility type -- Task interface, but all properties are optional 
     update: async (id:number, task: Partial<Task>): Promise<void> => {
         // Body we pass is {id,...task} -- This ... is an object spread syntax (spreads all properties of task object)
-        await api.put(`/task/${id}`, {id, ...task}); 
+        await api.put(`/tasks/${id}`, {id, ...task}); 
     },
     
     delete: async (id:number): Promise<void> => {
-        await api.delete(`/task/${id}`);
+        await api.delete(`/tasks/${id}`);
     },
 };
     
