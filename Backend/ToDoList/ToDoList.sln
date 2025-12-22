@@ -1,11 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# 
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoList.Api", "ToDoList.Api\ToDoList.Api.csproj", "{38568E85-2C8C-45D7-BA7B-54152F00A0AC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F6DFCBB2-0FA6-4996-A0E0-EB06A3603BCA}"
 	ProjectSection(SolutionItems) = preProject
 		compose.yaml = compose.yaml
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoList.Tests", "ToDoList.Tests\ToDoList.Tests.csproj", "{70549A47-E08C-473A-8A6D-B3243665C844}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,5 +20,9 @@ Global
 		{38568E85-2C8C-45D7-BA7B-54152F00A0AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38568E85-2C8C-45D7-BA7B-54152F00A0AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38568E85-2C8C-45D7-BA7B-54152F00A0AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70549A47-E08C-473A-8A6D-B3243665C844}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70549A47-E08C-473A-8A6D-B3243665C844}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70549A47-E08C-473A-8A6D-B3243665C844}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70549A47-E08C-473A-8A6D-B3243665C844}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
