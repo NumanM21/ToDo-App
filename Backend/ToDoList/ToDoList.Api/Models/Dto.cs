@@ -48,3 +48,37 @@ public class UpdateTaskDto
     public bool IsCancelled { get; set; }
     public string? CompleteTargetDate { get; set; }
 }
+
+// Location Validation DTO - Comes FROM frontend
+public class ValidateLocationDto
+{
+    // Location string user entered 
+    public string Location { get; set; } = string.Empty;
+}
+
+// Response DTO for validated location -- Sent back to frontend with validated location
+public class ValidatedLocationDto
+{
+    public bool Valid { get; set; }
+    public string FormattedAddress { get; set; } = string.Empty;
+    public string City { get; set; } = string.Empty;
+    public string Country { get; set; } = string.Empty;
+    public CoordinatesDto Coordinates { get; set; } = new();
+    public string? ErrorMessage { get; set; } 
+}
+
+// Coordinates extracted from geocoding
+public class CoordinatesDto
+{
+    public double Lat { get; set; }
+    public double Lng { get; set; }
+}
+
+
+
+
+
+
+
+
+
