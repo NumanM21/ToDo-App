@@ -1,4 +1,6 @@
-﻿namespace ToDoList.Api.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ToDoList.Api.Models;
 
 public class Dto
 {
@@ -10,7 +12,8 @@ public class RegisterDto
     public string LastName { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public string Password { get; set; } = string.Empty;
-    public string? Location { get; set; } 
+    [Required(ErrorMessage = "Location is required!")] 
+    public string Location { get; set; } 
 }
 
 public class LoginDto

@@ -136,7 +136,7 @@ function RegisterPage() {
                     {/* Location */}
                     <div className="mb-6">
                         <label htmlFor="location" className="block text-gray-700 mb-2">
-                            Location (Optional)
+                            Location (City, Country)
                         </label>
                         <input
                             type="text"
