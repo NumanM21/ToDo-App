@@ -14,3 +14,9 @@ dist/
 .DS_Store
 *.log
 **/.idea/
+appsettings.json
+appsettings.*.json
+appsettings.Development.json
+**/appsettings.json
+**/appsettings.Development.json
+**/appsettings.*.json
