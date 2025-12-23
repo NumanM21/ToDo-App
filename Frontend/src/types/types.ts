@@ -37,7 +37,7 @@ export interface RegisterCredentials {
     lastName: string;
     email: string;
     password: string;
-    location?:string;
+    location:string;
 }
 
 // Google Geocoding API  

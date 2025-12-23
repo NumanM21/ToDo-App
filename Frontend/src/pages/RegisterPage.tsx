@@ -2,6 +2,7 @@
 import { useNavigate, Link } from 'react-router-dom';
 import { authAPI } from '../services/api';
 import type { RegisterCredentials } from '../types/types';
+import { validateLocation } from '../services/geocodingService';
 
 function RegisterPage() {
     // State for form data
@@ -14,6 +15,9 @@ function RegisterPage() {
     });
     const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    
+    // Location Validation loading state - separate from loading state above 
+    const [isValidatingLocation, setIsValidatingLocation] = useState<boolean>(false);
 
     // Hooks
     const navigate = useNavigate();
@@ -31,29 +35,63 @@ function RegisterPage() {
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         setError(null);
-        setIsLoading(true);
-
+        
+        // Validate Location with Google Geocoding API
+        setIsValidatingLocation(true); 
+        
         try {
-            // Call register API
-            const response = await authAPI.register(formData);
-
-            // Store token and user info (same as login)
+            // Call GC API to validate location - returns {valid:boolean, formattedAddress: string, coordinates: {}...)
+            const locationResult = await validateLocation(formData.location);
+            
+            // Stop validation spinner -- Have gotten our result back
+            setIsValidatingLocation(false);
+            
+            // Check if location is valid
+            if (!locationResult.valid){
+                // Show error message from our geocodingService -> and STOP registration here!
+                setError(locationResult.errorMessage || 'Invalid Location. Please enter: City, Country');
+                return;
+            }
+            
+            // Location Valid - normal registration 
+            
+            // show main loading spinner
+            setIsLoading(true);
+            
+            // Build registration data with valid location -- formData along with Google's formatted address 
+            const registrationData = {
+                ...formData,
+                location: locationResult.formattedAddress
+            }; //TODO could store coordinates from this API call now in cache, for optimising!
+            
+            // Call register API 
+            const response = await authAPI.register(registrationData);
+                
+            // Registration successful - store Data and redirect
+            
+            
+            // Store JWT token in localstorage 
             localStorage.setItem('token', response.token);
+            
+            // Store User info in LS (for navbar, weather widget, first name displayed)
             localStorage.setItem('user', JSON.stringify({
                 userId: response.userId,
                 email: response.email,
-                firstName: response.firstName
+                firstName: response.firstName,
+                location: locationResult.formattedAddress
             }));
 
             // Navigate to dashboard (user is now logged in)
             navigate('/dashboard');
         } catch (error: any) {
-            setError(error.response?.data?.message || 'Registration failed. Please try again.');
-        } finally {
+            // Stop both loading states
+            setIsValidatingLocation(false);
             setIsLoading(false);
+            setError(error.response?.data?.message || 'Registration failed. Please try again.');
         }
     };
-
+    
+    // Render /JSX
     return (
         <div className="min-h-screen bg-gray-100 flex items-center justify-center py-8">
             <div className="bg-white p-8 rounded-lg shadow-md w-96">
@@ -144,8 +182,17 @@ function RegisterPage() {
                             name="location"
                             value={formData.location}
                             onChange={handleChange}
+                            placeholder="e.g. London, UK"   
+                            required
+                            disabled={isValidatingLocation} // Disable whilst validating
                             className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
                         />
+                        {/* Show validating message */}
+                        {isValidatingLocation && (
+                            <p className="text-sm text-blue-600 mt-1">
+                                Validating location...
+                            </p>
+                        )}
                     </div>
 
                     {/* Submit button */}
@@ -154,7 +201,13 @@ function RegisterPage() {
                         disabled={isLoading}
                         className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 disabled:bg-gray-400"
                     >
-                        {isLoading ? 'Creating account...' : 'Register'}
+                        {/* Show different text based on state */}
+                        {isValidatingLocation
+                            ? 'Validating location...'
+                            : isLoading
+                                ? 'Creating account...'
+                                : 'Register'
+                        }
                     </button>
                 </form>
 

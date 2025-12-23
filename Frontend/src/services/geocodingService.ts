@@ -24,6 +24,10 @@ export const validateLocation = async (locationString: string): Promise<Validate
     // Get API Key from environment
     //// import.meta.env - Vite's way to access env variables (pull key)
     const apiKey = import.meta.env.VITE_GOOGLE_GEOCODING_API_KEY;
+    
+    // Debugging code -- TODO can remove
+    console.log('API Key loaded:', apiKey ? 'YES (length: ' + apiKey.length + ')' : 'NO');
+
 
     // Error handling - ensure API Key exists
     if (!apiKey) {
