@@ -9,6 +9,7 @@ obj/
 # Angular
 node_modules/
 dist/
+.gitignore
 
 # General
 .DS_Store
