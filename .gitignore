@@ -15,8 +15,6 @@ dist/
 *.log
 **/.idea/
 appsettings.json
-appsettings.*.json
 appsettings.Development.json
 **/appsettings.json
 **/appsettings.Development.json
-**/appsettings.*.json
