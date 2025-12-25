@@ -47,7 +47,7 @@ export const useWeather = () => {
                 // Get location from user object
                 const location = user.location;
 
-                console.log('🔍 Step 1: User location from localStorage:', location);
+                
 
                 // Error handling 
                 if (!location) {
@@ -58,27 +58,27 @@ export const useWeather = () => {
                     return;  
                 }
 
-                console.log('🔍 Step 2: Calling validateLocation with:', location);
+                
                 // Geocode Location (string) to get Coordinates (lat and lng)
 
                 // Call backend validateLocation (api/location/validate) -> which calls Google's Geocode API and returns object
                 const locationResult = await validateLocation(location);
-                console.log('🔍 Step 3: Geocoding result:', locationResult);
+                
                 // Error handling
                 if (!locationResult.valid) {
                     setError(locationResult.errorMessage || 'Could not validate location');
                     setIsLoading(false);
                     return;
                 }
-                console.log('🔍 Step 4: Extracted coordinates:', locationResult.coordinates);
+                
                 // Extract coordinates
                 const {lat, lng} = locationResult.coordinates;
-                console.log('🔍 Step 5: lat =', lat, 'lng =', lng);
+                
                 // Fetch Weather Data using Coordinates
-                console.log('🔍 Step 6: Calling weather API with coordinates');
+               
                 // Call OpenWeatherMapi API with coordinates - returns weatherData object or null
                 const weatherData = await getWeatherByCoordinates(lat, lng);
-                console.log('🔍 Step 7: Weather data received:', weatherData);
+               
                 // Error handling
                 if (!weatherData) {
                     setError('Could not fetch weather data');
