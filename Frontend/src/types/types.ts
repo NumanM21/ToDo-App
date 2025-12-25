@@ -3,6 +3,7 @@ export interface User {
     userId: number;
     email: string;
     firstName: string;
+    location: string;
 }
 
 // Auth response from backend
@@ -11,6 +12,7 @@ export interface AuthResponse {
     userId: number;
     email: string;
     firstName: string;
+    location: string;
 }
 
 // Task Entity

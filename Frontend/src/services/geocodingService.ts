@@ -36,8 +36,8 @@ export const validateLocation = async (locationString: string): Promise<Validate
             city: response.data.city,
             country: response.data.country,
             coordinates: {
-                lat: response.data.lat,
-                lng: response.data.lng
+                lat: response.data.coordinates.lat,
+                lng: response.data.coordinates.lng
             },
             errorMessage: response.data.errorMessage
         };

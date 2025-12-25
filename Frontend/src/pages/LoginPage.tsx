@@ -66,7 +66,8 @@ function LoginPage() { // The actual component (function)
             localStorage.setItem('user', JSON.stringify({
                 userId: response.userId,
                 email: response.email,
-                firstName: response.firstName
+                firstName: response.firstName,
+                location:  response.location
             }));
 
             // User now logged in - navigate to dashboard

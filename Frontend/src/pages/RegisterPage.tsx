@@ -73,7 +73,7 @@ function RegisterPage() {
             // Store JWT token in localstorage 
             localStorage.setItem('token', response.token);
             
-            // Store User info in LS (for navbar, weather widget, first name displayed)
+            // Store User info in LocalStoreage (for navbar, weather widget, first name displayed)
             localStorage.setItem('user', JSON.stringify({
                 userId: response.userId,
                 email: response.email,

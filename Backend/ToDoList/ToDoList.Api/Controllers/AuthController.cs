@@ -55,7 +55,8 @@ public class AuthController : ControllerBase
             Token = token,
             UserId = user.Id,
             Email = user.Email,
-            FirstName = user.FirstName
+            FirstName = user.FirstName,
+            Location = user.Location ?? string.Empty
         });
     }
     
@@ -82,7 +83,8 @@ public class AuthController : ControllerBase
             Token = token,
             Email = user.Email,
             FirstName = user.FirstName,
-            UserId = user.Id
+            UserId = user.Id,
+            Location = user.Location ?? string.Empty
         });
     }
     

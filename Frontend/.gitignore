@@ -26,8 +26,6 @@ dist-ssr
 .env
 .env.local
 .env.*.local
-appsettings.json
-appsettings.Development.json
 **/.env
 **/.env.local
 **/.env.*.local
