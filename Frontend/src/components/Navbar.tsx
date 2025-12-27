@@ -52,7 +52,7 @@ function Navbar() {
                             to="/dashboard"
                             className="text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors"
                         >
-                            To-Do List App
+                            Tasks App NM
                             {/* text-2xl: larger font for prominence */}
                             {/* font-bold: bold weight */}
                             {/* text-blue-600: brand color */}
