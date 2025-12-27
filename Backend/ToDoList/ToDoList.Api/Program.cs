@@ -186,7 +186,7 @@ app.UseAuthorization(); // Checks if user is authorised by endpoint
 
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+//if (app.Environment.IsDevelopment())
 {
     app.UseSwagger(); // Enable swagger.json
     app.UseSwaggerUI(); // Enable UI at /swagger /// **Default URL:** `http(s)://localhost:{port}/swagger`
