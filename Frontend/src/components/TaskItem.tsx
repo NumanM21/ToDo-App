@@ -36,7 +36,7 @@ function TaskItem({task, onToggleComplete, onDelete, onCancel}: TaskItemProps){
             <div className="justify-end">
                 {/* Task header */}
                 <h3 className={`text-lg font-semibold mb-2 ${
-                    task.isComplete ? 'line-through text-gray-500' : 'text-gray-800'
+                    task.isComplete || task.isCancelled ? 'line-through text-gray-500' : 'text-gray-800'
                 }`}>
                     {task.header}
                 </h3>
