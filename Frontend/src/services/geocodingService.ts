@@ -25,6 +25,8 @@ export const validateLocation = async (locationString: string): Promise<Validate
         const API_BASE_URL = import.meta.env.PROD  ?
             'https://todolist-backend-nm-hwfehugmh8g3f5gg.ukwest-01.azurewebsites.net/api' : // Runs on 'npm run build'
             'http://localhost:5193/api'; // Runs on 'npm run dev'
+
+        console.log(import.meta.env.VITE_OPENWEATHER_API_KEY)
         
         // axois.post() -> Makes HTTP POST request - param1 (URL to our backend endpoint) - param2 (request body - data we are sending)
         const response = await axios.post(`${API_BASE_URL}/location/validate`, {
