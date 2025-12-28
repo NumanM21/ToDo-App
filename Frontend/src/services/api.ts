@@ -71,7 +71,7 @@ export const TaskAPI = {
         return response.data; // Back returns created task with the 3 omitted field!
     },
     // Partial<> - TS Utility type -- Task interface, but all properties are optional 
-    update: async (id:number, task: Partial<Task>): => {
+    update: async (id:number, task: Partial<Task>) => {
         // Body we pass is {id,...task} -- This ... is an object spread syntax (spreads all properties of task object)
         const response = await api.put(`/tasks/${id}`, {id, ...task});
         return response.data;
