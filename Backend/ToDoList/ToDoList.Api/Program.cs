@@ -194,6 +194,22 @@ app.UseAuthorization(); // Checks if user is authorised by endpoint
 
 app.UseHttpsRedirection();
 
+// A simple root route
+app.MapGet("/", () => new
+{
+    message = "ToDoList API is running",
+    version = "1.0",
+    swagger = "/swagger",
+    endpoints = new[]
+    {
+        "/api/auth/register",
+        "/api/auth/login",
+        "/api/tasks",
+        "/api/location/validate"
+    }
+});
+
+
 app.MapControllers(); // maps to controllers - scans for clsses with [ApiController] - reads [Route] and does routing for our API classes
 
 app.Run();

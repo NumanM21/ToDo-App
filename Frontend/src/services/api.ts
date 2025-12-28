@@ -3,7 +3,9 @@ import type {AuthResponse, LoginCredentials, RegisterCredentials, Task} from "..
 
 
 // Base URL for my backend
-const API_BASE_URL = 'http://localhost:5193/api';
+const API_BASE_URL = import.meta.env.PROD  ?
+    'https://todolist-backend-nm-hwfehugmh8g3f5gg.ukwest-01.azurewebsites.net/api' : // Runs on 'npm run build'
+    'http://localhost:5193/api'; // Runs on 'npm run dev'
 
 // Create Axios instance // similar ti creating a configured HttpClient in C#
 const api = axios.create({
