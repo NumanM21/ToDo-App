@@ -94,6 +94,8 @@ builder.Services.AddCors(opt =>
     });
 });
 
+
+
 var app = builder.Build();
 
 // Seed data for development
