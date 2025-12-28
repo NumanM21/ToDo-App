@@ -64,7 +64,12 @@ function DashboardPage() {
         try {
             // Call API to update
             await TaskAPI.update(id, {
-                isComplete: !task.isComplete
+                id: task.id,
+                header: task.header,
+                body: task.body || '',
+                isComplete: !task.isComplete,
+                isCancelled: task.isCancelled,
+                completedTargetDate: task.completedTargetDate || ''
             });
 
             // Update state - map creates new array with updated task -- .map returns a new array in React -- each item needs UNIQUE key prop (React Diffing algorithm)
@@ -83,7 +88,12 @@ function DashboardPage() {
         try {
             // Toggle cancelled status
             await TaskAPI.update(id, {
-                isCancelled: !task.isCancelled
+                id: task.id,
+                header: task.header,
+                body: task.body || '',
+                isComplete: task.isComplete,
+                isCancelled: !task.isCancelled,
+                completedTargetDate: task.completedTargetDate || ''
             });
 
             // Update state
