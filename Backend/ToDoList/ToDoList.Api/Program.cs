@@ -84,7 +84,10 @@ builder.Services.AddCors(opt =>
 {
     opt.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins("http://localhost:5173") // Frontend URL
+        policy.WithOrigins(
+                "http://localhost:5173",  // Local development
+                "https://witty-bay-09594f403.1.azurestaticapps.net.azurestaticapps.net"  // Production
+                ) // Frontend URL
             .AllowAnyMethod()   // Allow GET, POST, PUT, DELETE 
             .AllowAnyHeader()   // Allow all headers
             .AllowCredentials(); // Allow cookies/auth
